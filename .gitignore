@@ -44,3 +44,5 @@ WorkdayDownloader/DataHandlers/Personnel.cs
 WorkdayDownloader/DataHandlers/PhoneRooms.cs
 WorkdayDownloader/DataHandlers/ProfOverride.cs
 WorkdayDownloader/DataHandlers/RetirementSavings.cs
+*.ignore
+*.dll

@@ -40,6 +40,15 @@
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Github|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Github\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Newtonsoft.Json">
@@ -62,21 +71,8 @@
     <Compile Include="AppConfig.cs" />
     <Compile Include="Common.cs" />
     <Compile Include="Database.cs" />
-    <Compile Include="DataHandlers\Allocations.cs" />
     <Compile Include="DataExtensions.cs" />
-    <Compile Include="DataHandlers\BarNumbers.cs" />
     <Compile Include="DataHandlers\Sample.cs" />
-    <Compile Include="DataHandlers\PayrollBalances.cs" />
-    <Compile Include="DataHandlers\Location_Tbl.cs" />
-    <Compile Include="DataHandlers\Education.cs" />
-    <Compile Include="DataHandlers\EmergencyContactPhones.cs" />
-    <Compile Include="DataHandlers\EmergencyContacts.cs" />
-    <Compile Include="DataHandlers\Languages.cs" />
-    <Compile Include="DataHandlers\NamesAddl.cs" />
-    <Compile Include="DataHandlers\Personnel.cs" />
-    <Compile Include="DataHandlers\PhoneRooms.cs" />
-    <Compile Include="DataHandlers\ProfOverride.cs" />
-    <Compile Include="DataHandlers\RetirementSavings.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -94,7 +90,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="sample.app.config" />
     <None Include="packages.config" />
     <None Include="Service References\WD_Human_Resources\Human_Resources.wsdl" />
     <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Academic_Appointment_ResponseType.datasource">
