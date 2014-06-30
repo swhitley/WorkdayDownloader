@@ -18,7 +18,8 @@ A sample app.config file is provided.  Most of the configuration is done in app.
 
 The application can also point to an AppConfig table for easier maintenance.  The AppConfig table is designed to hold the report-related items only.  It is not meant to replace app.config.
 
-```CREATE TABLE [AppConfig](
+```
+CREATE TABLE [AppConfig](
 	[Group] [varchar](30),
 	[Key] [varchar](255),
 	[Value] [varchar](8000),
