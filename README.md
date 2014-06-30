@@ -18,14 +18,15 @@ A sample app.config file is provided.  Most of the configuration is done in app.
 
 The application can also point to an AppConfig table for easier maintenance.  The AppConfig table is designed to hold the report-related items only.  It is not meant to replace app.config.
 
-`CREATE TABLE [AppConfig](
+```CREATE TABLE [AppConfig](
 	[Group] [varchar](30),
 	[Key] [varchar](255),
 	[Value] [varchar](8000),
 	[Comment] [varchar](255),
 	[LastUpdated] [datetime]
 )
-`
+```
+
 Example AppConfig Data:
 
 	INSERT INTO AppConfig VALUES ('WorkdayDownloader','SAMPLE_TABLE_URL','{user name}/sample_report?format=csv',NULL,GETDATE())
