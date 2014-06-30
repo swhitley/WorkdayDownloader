@@ -34,9 +34,11 @@ Example AppConfig Data:
 	
 
 Data Handlers
+-------------
 
-	Additional code can be added to the project very easily under the \DataHandlers folder.  See the Sample.cs file.
-	The program looks for a data handling class that matches the name of the table.  If that class is found, the additional code is automatically executed.
+Additional code can be added to the project very easily under the \DataHandlers folder.  See the Sample.cs file.
+
+The program looks for a data handling class that matches the name of the table.  If that class is found, the additional code is automatically executed.
 
 
 
