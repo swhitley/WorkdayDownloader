@@ -29,7 +29,6 @@ _ReSharper*/
 [Tt]est[Rr]esult*
 packages/
 WorkdayDownloader.vssscc
-WorkdayDownloader/app.config
 WorkdayDownloader.sln
 WorkdayDownloader/DataHandlers/Allocations.cs
 WorkdayDownloader/DataHandlers/BarNumbers.cs
