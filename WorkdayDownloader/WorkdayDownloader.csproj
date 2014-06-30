@@ -1,0 +1,951 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B03AF95D-C210-4EA0-A7BF-557F22C98BFB}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WorkdayDownloader</RootNamespace>
+    <AssemblyName>WorkdayDownloader</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AppConfig.cs" />
+    <Compile Include="Common.cs" />
+    <Compile Include="Database.cs" />
+    <Compile Include="DataHandlers\Allocations.cs" />
+    <Compile Include="DataExtensions.cs" />
+    <Compile Include="DataHandlers\BarNumbers.cs" />
+    <Compile Include="DataHandlers\Sample.cs" />
+    <Compile Include="DataHandlers\PayrollBalances.cs" />
+    <Compile Include="DataHandlers\Location_Tbl.cs" />
+    <Compile Include="DataHandlers\Education.cs" />
+    <Compile Include="DataHandlers\EmergencyContactPhones.cs" />
+    <Compile Include="DataHandlers\EmergencyContacts.cs" />
+    <Compile Include="DataHandlers\Languages.cs" />
+    <Compile Include="DataHandlers\NamesAddl.cs" />
+    <Compile Include="DataHandlers\Personnel.cs" />
+    <Compile Include="DataHandlers\PhoneRooms.cs" />
+    <Compile Include="DataHandlers\ProfOverride.cs" />
+    <Compile Include="DataHandlers\RetirementSavings.cs" />
+    <Compile Include="Logger.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SchoolDownload.cs" />
+    <Compile Include="Service References\WD_Human_Resources\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\WD_TalentService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="sample.app.config" />
+    <None Include="packages.config" />
+    <None Include="Service References\WD_Human_Resources\Human_Resources.wsdl" />
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Academic_Appointment_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Add_Update_Company_Tax_IDOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Add_Update_OrganizationOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Add_Workday_AccountOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Business_SiteType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Business_Site_ReferencesRootType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Change_Additional_NamesOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Change_Additional_Names_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Change_Background_Check_StatusOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Change_Background_Check_Status_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Change_Government_IDsOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Change_Government_IDs_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Change_Legal_NameOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Change_Legal_Name_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Change_LicensesOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Change_Licenses_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Change_Other_IDsOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Change_Other_IDs_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Change_Passports_and_VisasOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Change_Passports_and_Visas_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Change_Personal_InformationOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Change_Personal_Information_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Change_Preferred_NameOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Change_Preferred_Name_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Company_Tax_IDType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Contingent_WorkerType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Contingent_Worker_Contract_InfoType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Contingent_Worker_Personal_InfoType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Contingent_Worker_ReferencesType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Dissolve_Organization_StructureOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.EmployeeType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Employee_Employment_InfoType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Employee_ImageType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Employee_Personal_InfoType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Employee_ReferencesType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Employee_Related_PersonsType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.End_Academic_AppointmentOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Find_Business_SiteOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Find_Contingent_WorkerOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Find_EmployeeOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Find_Job_Classification_GroupOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Find_Job_Family_GroupOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Find_Job_ProfileOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Find_OrganizationOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Find_WorkerOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Get_Academic_UnitsOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Get_Academic_Units_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Get_Academic_Unit_HierarchiesOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Get_Academic_Unit_Hierarchies_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Get_Business_SiteOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Get_Company_Insider_TypesOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Get_Company_Insider_Types_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Get_Company_Tax_IDOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Get_Company_Tax_IDsOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Get_Company_Tax_IDs_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Get_Contingent_WorkerOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Get_Contingent_Worker_Contract_InfoOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Get_Contingent_Worker_Personal_InfoOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Get_Difficulty_to_FillOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Get_Difficulty_to_Fill_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Get_DisabilitiesOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Get_Disabilities_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Get_EmployeeOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Get_Employee_Employment_InfoOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Get_Employee_ImageOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Get_Employee_Personal_InfoOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Get_Employee_Related_PersonsOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Get_EthnicitiesOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Get_Ethnicities_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Get_Former_WorkersOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Get_Former_Workers_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Get_FrequenciesOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Get_Frequencies_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Get_Holiday_CalendarsOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Get_Holiday_Calendars_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Get_Job_CategoriesOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Get_Job_Categories_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Get_Job_Classification_GroupOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Get_Job_Classification_GroupsOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Get_Job_Classification_Groups_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Get_Job_FamiliesOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Get_Job_Families_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Get_Job_Family_GroupOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Get_Job_Family_GroupsOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Get_Job_Family_Groups_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Get_Job_ProfileOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Get_Job_ProfilesOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Get_Job_Profiles_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Get_LocationsOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Get_Locations_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Get_OrganizationOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Get_OrganizationsOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Get_Organizations_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Get_Political_AffiliationsOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Get_Political_Affiliations_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Get_Previous_System_Job_HistoryOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Get_Previous_System_Job_History_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Get_Provisioning_GroupsOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Get_Provisioning_Group_AssignmentsOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Get_Search_SettingsOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Get_Search_Settings_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Get_Server_TimestampOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Get_Training_TypesOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Get_Training_Types_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Get_WorkersOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Get_Workers_Compensation_CodesOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Get_Workers_Compensation_Codes_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Get_Workers_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Get_Worker_Event_HistoryOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Get_Worker_ProfileOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Get_Work_ShiftsOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Get_Work_Shifts_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Inactivate_OrganizationOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Job_Classification_GroupType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Job_Classification_Group_ReferencesType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Job_Family_GroupType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Job_Family_Group_ReferencesType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Job_ProfileType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Job_Profile_ReferencesType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Maintain_Contact_InformationOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Maintain_Contact_Information_for_Person_Event_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Manage_Union_MembershipOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Manage_Union_Membership_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.OrganizationType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Organization_ReferenceRootType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Organization_ReferencesRootType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Provisioning_Groups_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Provisioning_Group_Assignments_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Put_Academic_UnitOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Put_Academic_Unit_HierarchyOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Put_Academic_Unit_Hierarchy_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Put_Academic_Unit_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Put_Addresses_for_Country_Format_ExtensionOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Put_Addresses_for_Country_Format_Extension_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Put_Company_Insider_TypeOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Put_Company_Insider_Type_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Put_Company_Tax_IDOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Put_Company_Tax_ID_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Put_DependentOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Put_Dependent_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Put_Difficulty_to_FillOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Put_Difficulty_to_Fill_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Put_DisabilityOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Put_Disability_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Put_EthnicityOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Put_Ethnicity_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Put_Former_WorkerOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Put_Former_Worker_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Put_FrequencyOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Put_Frequency_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Put_Holiday_CalendarOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Put_Holiday_Calendar_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Put_Job_CategoryOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Put_Job_Category_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Put_Job_Classification_GroupOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Put_Job_Classification_Group_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Put_Job_FamilyOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Put_Job_Family_GroupOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Put_Job_Family_Group_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Put_Job_Family_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Put_Job_ProfileOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Put_Job_Profile_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Put_LocationOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Put_Location_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Put_Political_AffiliationOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Put_Political_Affiliation_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Put_Previous_System_Job_HistoryOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Put_Previous_System_Job_History_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Put_Provisioning_GroupOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Put_Provisioning_Group_AssignmentOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Put_Provisioning_Group_Assignment_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Put_Provisioning_Group_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Put_Search_SettingsOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Put_Search_Settings_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Put_Training_TypeOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Put_Training_Type_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Put_Workers_Compensation_CodeOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Put_Workers_Compensation_Code_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Put_Work_ShiftOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Put_Work_Shift_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Server_TimestampType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Update_Contingent_Worker_Personal_InfoOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Update_Employee_ImageOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Update_Employee_Personal_InfoOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Update_Workday_AccountOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Worker_Event_HistoryType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Worker_ProfileType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_Human_Resources\WorkdayDownloader.WD_Human_Resources.Worker_ReferencesType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\Talent.wsdl" />
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Assess_TalentOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Assess_Talent_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Edit_Career_InterestsOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Edit_Job_InterestsOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Edit_Job_Interests_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Edit_Relocation_PreferencesOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Edit_Travel_PreferencesOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Edit_Travel_Preferences_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Get_CertificationsOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Get_Certifications_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Get_Certification_IssuersOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Get_Certification_Issuers_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Get_CompetenciesOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Get_Competencies_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Get_Competency_CategoriesOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Get_Competency_Categories_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Get_Competency_LevelsOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Get_Competency_Levels_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Get_DegreesOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Get_Degrees_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Get_Educational_Institution_TypesOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Get_Educational_Institution_Types_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Get_Fields_Of_StudyOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Get_Fields_Of_Study_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Get_LanguagesOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Get_Languages_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Get_Language_Proficiency_LevelsOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Get_Language_Proficiency_Levels_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Get_SchoolsOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Get_Schools_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Get_Skill_Source_PrecedencesOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Get_Skill_Source_Precedences_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Give_FeedbackOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Give_Feedback_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Manage_AccomplishmentsOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Manage_Accomplishments_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Manage_AwardsOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Manage_Awards_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Manage_Career_Interest_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Manage_CertificationsOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Manage_Certifications_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Manage_CompetenciesOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Manage_Competencies_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Manage_EducationOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Manage_Education_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Manage_External_Job_HistoryOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Manage_External_Job_History_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Manage_Internal_ProjectsOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Manage_Internal_Projects_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Manage_LanguagesOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Manage_Languages_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Manage_MembershipsOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Manage_Memberships_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Manage_Relocation_Preferences_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Manage_Succession_PlanOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Manage_Succession_Plan_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Manage_TrainingOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Manage_Training_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Manage_Work_ExperienceOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Manage_Work_Experiences_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Put_CertificationOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Put_Certification_IssuerOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Put_Certification_Issuer_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Put_Certification_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Put_CompetencyOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Put_Competency_LevelOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Put_Competency_Level_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Put_Competency_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Put_DegreeOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Put_Degree_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Put_Educational_Institution_TypeOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Put_Educational_Institution_Type_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Put_Field_Of_StudyOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Put_Field_Of_Study_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Put_Position_for_SuccessionOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Put_Position_for_Succession_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Put_SchoolOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Put_School_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Put_SkillOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Put_Skill_Item_CategoryOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Put_Skill_Item_Category_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WD_TalentService\WorkdayDownloader.WD_TalentService.Put_Skill_ResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\WD_Human_Resources\" />
+    <WCFMetadataStorage Include="Service References\WD_TalentService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WD_TalentService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WD_TalentService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WD_TalentService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WD_Human_Resources\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WD_Human_Resources\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WD_Human_Resources\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
