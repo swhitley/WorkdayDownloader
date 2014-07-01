@@ -61,7 +61,7 @@ namespace WorkdayDownloader
                 // Create a "response" object
                 Get_Schools_ResponseType response = client.Get_Schools(request);
 
-                // Display all Workers
+                // Access all schools
                 for (int i = 0; i < response.Response_Data.Length; i++)
                 {
                     if (response.Response_Data[i] != null)
