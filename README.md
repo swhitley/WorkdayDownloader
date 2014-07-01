@@ -56,7 +56,7 @@ The application can be run as follows:
 	
 The table in SQL Server will be truncated and refilled with the data from the Workday report.
 
-Additional parameters can be included: 
+Additional parameters can be included as a comma-separated list of name-value pairs: 
 
 	WorkdayDownloader.exe Benefit_Deductions FromDate=2014-01-01,ThruDate=2014-12-31
 	
