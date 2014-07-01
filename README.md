@@ -14,9 +14,12 @@ If the Workday report fields and SQL server columns match, minimal configuration
 Installation
 ------------
 
-A sample app.config file is provided.  Most of the configuration is done in app.config.
+1. Download and compile the project in Visual Studio.
+2. Edit the app.config file for your environment.
+3. Create the AppConfig table.
 
-The application can also point to an AppConfig table for easier maintenance.  The AppConfig table is designed to hold the report-related items only.  It is not meant to replace app.config.
+
+The application can point to an AppConfig table for easier maintenance.  The AppConfig table is designed to hold the report-related items only.  It is not meant to replace app.config.
 
 ```
 CREATE TABLE [AppConfig](
@@ -50,6 +53,8 @@ The application can be run as follows:
 	WorkdayDownloader.exe {Table Name}
 
 	Example: WorkdayDownloader.exe Employee_Data
+	
+The table in SQL Server will be truncated and refilled with the data from the Workday report.
 
 Additional parameters can be included: 
 
@@ -59,7 +64,7 @@ Additional parameters can be included:
 	
 		Example:  {user name}/sample_report?format=csv&ParmFromDate=%%FromDate%%&ParmThruDate=%%ThruDate%%
 	
-	
+A third parameter is available to skip the table truncation.  Set it to false if you wish to skip table truncation.	
 
 
 <nowiki>*</nowiki> This code has not been endorsed by Workday.
