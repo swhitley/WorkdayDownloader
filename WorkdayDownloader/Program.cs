@@ -369,8 +369,7 @@ namespace WorkdayDownloader
                     new SqlConnection(connString))
             {
                 connection.Open();
-                SqlCommand cmd = new SqlCommand("select top 1 * from @table", connection);
-                cmd.Parameters.AddWithValue("@table", tableName);
+                SqlCommand cmd = new SqlCommand("select top 1 * from " + tableName, connection);
                 SqlDataReader rows = cmd.ExecuteReader();
                 rows.Read();
                 for(int ndx = 0; ndx < rows.FieldCount; ndx++)
