@@ -61,8 +61,7 @@ namespace WorkdayDownloader
                     if (truncate)
                     {
                         //truncate the table
-                        SqlCommand cmd = new SqlCommand("truncate table @table", connection);
-                        cmd.Parameters.AddWithValue("@table", tableName);
+                        SqlCommand cmd = new SqlCommand("truncate table " + tableName, connection);
                         cmd.Transaction = transaction;
                         cmd.ExecuteNonQuery();
                     }
